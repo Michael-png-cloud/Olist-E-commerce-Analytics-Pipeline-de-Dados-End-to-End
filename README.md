@@ -4,6 +4,10 @@ Este projeto analisa o ecossistema de e-commerce brasileiro utilizando o dataset
 
 O projeto demonstra competências em Engenharia de Dados, SQL e Business Intelligence, focando na portabilidade do código e na resolução de conflitos de tipos de dados.
 
+Fonte de Dados
+Os dados utilizados neste projeto são provenientes do dataset público da Olist hospedado no Kaggle:
+[Brazilian E-Commerce Public Dataset by Olist] https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+
 ---
 
  Stack Tecnológica
