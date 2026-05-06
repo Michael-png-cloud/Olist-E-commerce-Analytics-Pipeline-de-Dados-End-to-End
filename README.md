@@ -39,8 +39,7 @@ Um dos grandes focos deste projeto foi a resolução de problemas reais encontra
 
  📂 Estrutura de Pastas
 ```text
-├── data/                       # Arquivos CSV originais (Dataset)
-├── etl_olist_pipeline.py       # Script de limpeza e carga
+├── processar_etl.py            # Script de limpeza e carga
 ├── Dashboard_Olist.pbix        # Arquivo do Power BI
 ├── README.md                   # Documentação do projeto
 └── .gitignore                  # Arquivos ignorados pelo Git (.db, cache)
