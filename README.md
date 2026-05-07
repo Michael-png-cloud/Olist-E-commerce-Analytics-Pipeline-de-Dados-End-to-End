@@ -8,6 +8,27 @@ Fonte de Dados
 Os dados utilizados neste projeto são provenientes do dataset público da Olist hospedado no Kaggle:
 [Brazilian E-Commerce Public Dataset by Olist] https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
+Pré-requisitos e Configuração ODBC
+Para que o Power BI consiga ler os dados do banco SQLite (`olist.db`), é necessário configurar um DSN (Data Source Name) no seu Windows:
+
+1. Instalação do Driver: Baixe e instale o [SQLite ODBC Driver](http://www.ch-werner.de/sqliteodbc/) (versão compatível com o seu sistema, geralmente 64-bit).
+2. Configuração do DSN:
+   - Abra o "Administrador de Fontes de Dados ODBC (64 bits)" no Windows.
+   - Vá em "DSN de Usuário" e clique em Adicionar.
+   - Escolha SQLite3 ODBC Driver.
+   - No campo Data Source Name, use um nome simples (ex: `SQLite_Olist`).
+   - No campo Database Name, clique em `Browse` e selecione o arquivo `olist.db` que você gerou com o Python.
+3. Ajuste no Power BI:
+   - Ao abrir o arquivo `.pbit`, se o Power BI solicitar o caminho, vá em `Transformar Dados` -> `Configurações da Fonte de Dados`.
+   - Clique em `Alterar Fonte` e certifique-se que o nome do DSN corresponde ao que você criou.
+
+Para reproduzir este projeto localmente, siga estes passos:
+
+1 - Clone o repositório: `git clone https://github.com/Michael-png-cloud/Olist-E-commerce-Analytics-Pipeline-de-Dados-End-to-End.git`
+2 - Prepare os dados: Crie uma pasta chamada `brazilian-ecommerce/versions/2/` na raiz do projeto e coloque os arquivos CSV baixados do Kaggle lá dentro.
+3 - Execute o ETL: Rode o script `processo_etl.py` para gerar o banco de dados `olist.db`.
+4 - Abra o Power BI: Abra o arquivo `dashboard_olist_pedidos.pbit` e, se necessário, atualize o caminho da fonte de dados ODBC para o seu banco local.
+
 ---
 
  Stack Tecnológica
@@ -19,8 +40,6 @@ Os dados utilizados neste projeto são provenientes do dataset público da Olist
 ---
 
  Arquitetura do Pipeline
-
-
 1.  Extração e ETL (Python): Limpeza de dados brutos, tratamento de nulos e normalização de datas. Utilização de caminhos relativos para garantir a portabilidade do script.
 2.  Armazenamento (SQL): Persistência dos dados em um banco relacional SQLite.
 3.  Modelagem (Power BI): Estruturação em Star Schema, criação de tabela `dCalendario` e desenvolvimento de medidas DAX para KPIs de vendas e logística.
@@ -30,7 +49,6 @@ Os dados utilizados neste projeto são provenientes do dataset público da Olist
 Desafios e Aprendizados (Troubleshooting)
 
 Um dos grandes focos deste projeto foi a resolução de problemas reais encontrados durante o desenvolvimento:
-
 * Conflitos de Tipos (Binary/BLOB): Identifiquei que colunas numéricas eram lidas como binários via ODBC. Resolvi aplicando `CAST(coluna AS TEXT)` diretamente no SQL de extração.
 * Portabilidade: Refatorei o script Python para usar o módulo `os`, permitindo que o pipeline seja executado em qualquer diretório sem alterações manuais de caminho.
 * Contexto de Filtro (DAX): Implementação de rankings dinâmicos utilizando `RANKX` e `ALLSELECTED` para garantir a precisão dos dados em visuais filtrados.
@@ -39,7 +57,7 @@ Um dos grandes focos deste projeto foi a resolução de problemas reais encontra
 
  📂 Estrutura de Pastas
 ```text
-├── processar_etl.py            # Script de limpeza e carga
-├── Dashboard_Olist.pbix        # Arquivo do Power BI
-├── README.md                   # Documentação do projeto
-└── .gitignore                  # Arquivos ignorados pelo Git (.db, cache)
+├── processar_etl.py                   # Script de limpeza e carga
+├── dashboard_olist_pedidos.pbit       # Arquivo do Power BI
+├── README.md                          # Documentação do projeto
+└── .gitignore                         # Arquivos ignorados pelo Git (.db, cache)
