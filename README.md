@@ -55,7 +55,7 @@ Um dos grandes focos deste projeto foi a resolução de problemas reais encontra
 
 ---
 
- 📂 Estrutura de Pastas
+Estrutura de Pastas
 ```text
 ├── brazilian-ecommerce/versions/2     # Caminho para guardar arquivos CSVs
 ├── processar_etl.py                   # Script de limpeza e carga
