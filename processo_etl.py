@@ -7,6 +7,7 @@ diretorio_atual = os.path.dirname(os.path.abspath(__file__))
 
 pasta_dados = os.path.join(diretorio_atual, "brazilian-ecommerce", "versions", "2")
 
+caminho_db = os.path.join(diretorio_atual, 'olist.db')
 
 # Lista com os nomes exatos dos arquivos CSV
 arquivos = {
@@ -31,7 +32,7 @@ caminho_dados_revisoes = os.path.join(pasta_dados, arquivos["revisoes"])
 caminho_dados_produtos = os.path.join(pasta_dados, arquivos["produtos"])
 
 # Criando a conexão com o SQLite
-engine = create_engine('sqlite:///olist.db')
+engine = create_engine(f'sqlite:///{caminho_db}')
 
 #criando caminhos
 df_ordens = pd.read_csv(caminho_dados_ordens)
